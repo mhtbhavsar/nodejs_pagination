@@ -10,36 +10,50 @@
 
 <body>
     <h3>Got a index.html page here</h3>
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-            <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-            <li id="recentProject"><a>Recent Projects</a></li>
-            <li id="cnameAsc"><a>Order By Category Name ASC</a></li>
-            <li id="usernameAsc"><a>Order By Username Asc</a></li>
-            <li id="ptitleAsc"><a>Order By Project Title Asc</a></li>
-        </ul>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">select to get data
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li id="recentProject"><a>Recent Projects</a></li>
+                    <li id="usernameAsc"><a>Order By Username Asc</a></li>
+                    <li id="ptitleAsc"><a>Order By Project Title Asc</a></li>
+                    <li id="cnameAsc"><a>Order By Category Name ASC</a></li>
+                </ul>
+            </div>
+            <br>
+        </div>
+        <div class="col-md-8">
+            <table class="table-bordered table-hover" border="0" cellpadding="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Project Title</th>
+                        <th>Username</th>
+                    </tr>
+                </thead>
+                <tbody id="displayData">
+                <tr>
+                        <td> no </td>
+                        <td> data </td>
+                </tr> 
+                    <tr>
+                        <td> select options </td>
+                        <td> from drop down </td>
+                </tr>
+                </tbody>
+            </table>
+            <ul class="pagination">
+                <li class="disabled"><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </div>
     </div>
-    <br>
-    <table class="table-bordered table-hover" border="0" cellpadding="0" width="100%">
-        <thead>
-            <tr>
-                <th>Project Title</th>
-                <th>Username</th>
-            </tr>
-        </thead>
-        <tbody id="displayData">
-        </tbody>
-    </table>
-    <ul class="pagination">
-        <li class="disabled"><a href="#">&laquo;</a></li>
-        <li class="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&raquo;</a></li>
-    </ul>
     <script src="vendor/jquery/dist/jquery.min.js" type="text/javascript"></script>
     <script src="vendor/bootstrap/js/bootstrap.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -53,7 +67,7 @@
 
             $.ajax({ //create an ajax request
                 type: "GET",
-                url: "http://localhost:3000/get/user",
+                url: "http://localhost:3000/get/data",
                 dataType: "json", //expect JSON to be returned  
                 data: {
                     page: page,
@@ -62,7 +76,7 @@
                     sortBy: sortBy
                 },
                 success: function(response) {
-
+                    $("#displayData").children("tr").remove();
                     for (var i = 0; i < response.length; i++) {
                         $("#displayData").append("<tr><td>" + response[i].project_title + "</td><td>" + response[i].username + "</td></tr>");
                     }
@@ -84,7 +98,7 @@
 
             $.ajax({ //create an ajax request
                 type: "GET",
-                url: "http://localhost:3000/get/user",
+                url: "http://localhost:3000/get/data",
                 dataType: "json", //expect JSON to be returned  
                 data: {
                     page: page,
@@ -93,6 +107,7 @@
                     sortBy: sortBy
                 },
                 success: function(response) {
+                    $("#displayData").children("tr").remove();
                     for (var i = 0; i < response.length; i++) {
                         $("#displayData").append("<tr><td>" + response[i].project_title + "</td><td>" + response[i].username + "</td></tr>");
                     }
@@ -112,7 +127,7 @@
 
             $.ajax({ //create an ajax request
                 type: "GET",
-                url: "http://localhost:3000/get/user",
+                url: "http://localhost:3000/get/data",
                 dataType: "json", //expect JSON to be returned  
                 data: {
                     page: page,
@@ -121,6 +136,7 @@
                     sortBy: sortBy
                 },
                 success: function(response) {
+                    $("#displayData").children("tr").remove();
                     for (var i = 0; i < response.length; i++) {
                         $("#displayData").append("<tr><td>" + response[i].project_title + "</td><td>" + response[i].username + "</td></tr>");
                     }
@@ -140,7 +156,7 @@
 
             $.ajax({ //create an ajax request
                 type: "GET",
-                url: "http://localhost:3000/get/user",
+                url: "http://localhost:3000/get/data",
                 dataType: "json", //expect JSON to be returned  
                 data: {
                     page: page,
@@ -149,7 +165,7 @@
                     sortBy: sortBy
                 },
                 success: function(response) {
-
+                    $("#displayData").children("tr").remove();
                     for (var i = 0; i < response.length; i++) {
                         $("#displayData").append("<tr><td>" + response[i].project_title + "</td><td>" + response[i].username + "</td></tr>");
                     }

@@ -7,17 +7,14 @@ var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var connection = require('express-myconnection');
 
+var dbconfig = require('./config/database');
+
+// All the server routings are created in index.js
 var index = require('./routes/index');
-var users = require('./routes/users');
 
 var app = express();
 
-app.use(connection(mysql, {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'chad'
-}, 'request'));
+app.use(connection(mysql, dbconfig.connection, 'request'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+// app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
